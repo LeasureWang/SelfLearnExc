@@ -58,5 +58,9 @@ public class Customer {
 				+ customerName + ", customerLocation=" + customerLocation
 				+ ", customerTel=" + customerTel + "]";
 	}
+	
+	public void showing(){
+		System.out.println("it is a showing method!");
+	}
 
 }
