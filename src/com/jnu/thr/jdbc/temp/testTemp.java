@@ -6,7 +6,7 @@ public class testTemp {
 
 	@Test
 	public void test(){
-
+		System.out.println("testTemp!");
 	}
 	
 }
