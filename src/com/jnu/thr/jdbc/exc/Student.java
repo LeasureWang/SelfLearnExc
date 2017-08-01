@@ -89,5 +89,9 @@ public class Student {
 				+ studentName + ", location=" + location + ", grade=" + grade
 				+ "]";
 	}
+	
+	public void studying(){
+		System.out.println("students are studying!!");
+	}
 
 }
