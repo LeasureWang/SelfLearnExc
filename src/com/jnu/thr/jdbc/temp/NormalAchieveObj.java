@@ -65,9 +65,9 @@ public class NormalAchieveObj {
 				// set the field
 				for (Map.Entry<String, Object> entry : values.entrySet()) {
 					String fieldName = entry.getKey();
-					Object fielsValue = entry.getValue();
+					Object fieldValue = entry.getValue();
 					ReflectionUtils
-							.setFieldValue(entity, fieldName, fielsValue);
+							.setFieldValue(entity, fieldName, fieldValue);
 				}
 			}
 		} catch (Exception e) {
