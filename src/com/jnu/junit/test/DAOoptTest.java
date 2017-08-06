@@ -8,17 +8,18 @@ import org.junit.Test;
 
 import com.jnu.thr.jdbc.Customer;
 import com.jnu.thr.jdbc.DAO;
+import com.jnu.thr.jdbc.DAOopt;
 
-public class DAOTest {
+public class DAOoptTest {
 
-	DAO dao = new DAO();
+	DAOopt daoOpt = new DAOopt();
 
 	@Test
 	public void testUpdate() {
 
 		String sql = "insert into tb_customer(cutr_key,cutr_name,cutr_location,cutr_tel)"
 				+ "values(?,?,?,?)";
-		dao.update(sql, 20170806, "jnu", "tianhe", 985211);
+		daoOpt.update(sql, 20, "jnu", "tianhe", 985211);
 
 	}
 
@@ -26,7 +27,7 @@ public class DAOTest {
 	public void testGet() {
 		String sql = "select cutr_key customerKey,cutr_name customerName,"
 				+ "cutr_location customerLocation,cutr_tel customerTel from tb_customer where cutr_key=?";
-		Customer customer = dao.get(Customer.class, sql, 20170806);
+		Customer customer = daoOpt.get(Customer.class, sql, 20);
 		System.out.println(customer);
 	}
 
@@ -34,22 +35,10 @@ public class DAOTest {
 	public void testGetForList() {
 		String sql = "select cutr_key customerKey,cutr_name customerName,"
 				+ "cutr_location customerLocation,cutr_tel customerTel from tb_customer";
-		List<Customer> customer = dao.getForList(Customer.class, sql);
+		List<Customer> customer = daoOpt.getForList(Customer.class, sql);
 	
 		System.out.println(customer);
 
-	}
-
-	@Test
-	public void testGetForValue() {
-		String sql="select cutr_location from tb_customer where cutr_tel=?";
-		String location=(String) dao.getForValue(sql, 211);
-		System.out.println(location);
-		
-		sql="select max(cutr_key) from tb_customer";
-		int key=(int) dao.getForValue(sql);
-		System.out.println(key);
-		
 	}
 
 }

@@ -11,27 +11,40 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
+import javax.sql.DataSource;
+
 import org.junit.Test;
+
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 public class JdbcTools {
 
+	
+	private static DataSource dataSource=null;
+	static{
+		dataSource=new ComboPooledDataSource("theC3P0");
+	}
+	
 	/*
 	 * db connection
 	 */
 	public static Connection dbConnection() throws Exception {
-		InputStream inputStream = JdbcTools.class.getClassLoader()
-				.getResourceAsStream("jdbc.properties");
-
-		Properties properties=new Properties();
-		properties.load(inputStream);
+		//*****below is the method which is no datasource*****
+//		InputStream inputStream = JdbcTools.class.getClassLoader()
+//				.getResourceAsStream("jdbc.properties");
+//
+//		Properties properties=new Properties();
+//		properties.load(inputStream);
+//		
+//		String driverClass=properties.getProperty("driverClass");
+//		String jbdcURL=properties.getProperty("jdbcURL");
+//		String dbUserName=properties.getProperty("dbUserName");
+//		String dbPassword=properties.getProperty("dbPassword");
+//		
+//		Class.forName(driverClass);
+//		return DriverManager.getConnection(jbdcURL, dbUserName, dbPassword);
 		
-		String driverClass=properties.getProperty("driverClass");
-		String jbdcURL=properties.getProperty("jdbcURL");
-		String dbUserName=properties.getProperty("dbUserName");
-		String dbPassword=properties.getProperty("dbPassword");
-		
-		Class.forName(driverClass);
-		return DriverManager.getConnection(jbdcURL, dbUserName, dbPassword);
+		return dataSource.getConnection();
 	}
 
 	/*

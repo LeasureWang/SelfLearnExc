@@ -56,7 +56,7 @@ public class Customer {
 	public String toString() {
 		return "Customer [customerKey=" + customerKey + ", customerName="
 				+ customerName + ", customerLocation=" + customerLocation
-				+ ", customerTel=" + customerTel + "]";
+				+ ", customerTel=" + customerTel + "]\n";
 	}
 	
 	public void showing(){
