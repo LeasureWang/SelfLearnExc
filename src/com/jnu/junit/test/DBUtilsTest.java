@@ -5,11 +5,14 @@ import static org.junit.Assert.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.junit.Test;
 
+import com.jnu.thr.jdbc.Customer;
 import com.jnu.thr.jdbc.JdbcTools;
 
 public class DBUtilsTest {
@@ -19,9 +22,19 @@ public class DBUtilsTest {
 	class TheResultSetHandler implements ResultSetHandler {
 
 		@Override
-		public Object handle(ResultSet arg0) throws SQLException {
-			System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-			return "at you!";
+		public Object handle(ResultSet resultSet) throws SQLException {
+//			System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+//			return "at you!";
+			List<Customer> customersList=new ArrayList<Customer>();
+			while(resultSet.next()){
+				 Integer customerKey=resultSet.getInt(1);
+				 String customerName=resultSet.getString(2);
+				 String customerLocation=resultSet.getString(3);
+				 Integer customerTel=resultSet.getInt(4);
+				 Customer customer=new Customer(customerKey,customerName,customerLocation,customerTel);
+				 customersList.add(customer);
+			}
+			return customersList;
 		}
 
 	}
