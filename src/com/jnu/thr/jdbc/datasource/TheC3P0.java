@@ -1,4 +1,4 @@
-package com.jnu.thr.jdbp.datasource;
+package com.jnu.thr.jdbc.datasource;
 
 import java.sql.SQLException;
 
